@@ -1,6 +1,5 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(R.id.leftPane, new SummaryFragment(), SUMMARY_FRAG_TAG);
             ft.add(R.id.rightPane, new MasterFragment(), MASTER_FRAG_TAG);
-            ft.addToBackStack("initializing frags");
+            //ft.addToBackStack("initializing frags");
             ft.commit();
             Toast.makeText(getApplicationContext(), "initializing frags", Toast.LENGTH_SHORT).show();
 
@@ -43,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
 
     }
 
+
     @Override
     public void onWorkoutSelected(Workout workout) {
         //Toast.makeText(getApplicationContext(), workout.toString(), Toast.LENGTH_SHORT).show();
@@ -50,15 +50,14 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
         DetailFragment detailFrag = (DetailFragment) getFragmentManager()
                 .findFragmentByTag(DETAIL_FRAG_TAG);
 
-        if  (detailFrag != null && detailFrag.isVisible()) {
-            Toast.makeText(getApplicationContext(), "canceling switch", Toast.LENGTH_SHORT).show();
-        } else {
+        if  (detailFrag == null) {
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.replace(R.id.leftPane, new MasterFragment(), MASTER_FRAG_TAG);
             ft.replace(R.id.rightPane, new DetailFragment(), DETAIL_FRAG_TAG);
             ft.addToBackStack("Switching frags");
-            Toast.makeText(getApplicationContext(), "doing switch", Toast.LENGTH_SHORT).show();
+            ft.setTransition( FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+
             ft.commit();
         }
 
