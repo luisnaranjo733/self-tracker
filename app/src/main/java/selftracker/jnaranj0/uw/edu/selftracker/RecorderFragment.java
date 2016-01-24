@@ -54,7 +54,7 @@ public class RecorderFragment extends DialogFragment {
                         "Recorded: " + count.getText() + " min of " + desc.getText(),
                         Toast.LENGTH_SHORT).show();
                 // https://docs.oracle.com/javase/6/docs/api/java/util/Date.html
-                Date date = new Date();
+                Date date = Date();
             }
         });
 
