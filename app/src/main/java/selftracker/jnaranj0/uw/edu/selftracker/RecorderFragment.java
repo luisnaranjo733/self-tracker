@@ -39,15 +39,18 @@ public class RecorderFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setMessage("How long did you work out for?");
+        builder.setMessage("Record your workout");
         final View rootView = inflater.inflate(R.layout.fragment_recorder, null);
         builder.setView(rootView);
         builder.setPositiveButton("Record", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                EditText desc = (EditText) rootView.findViewById(R.id.activityDesc);
                 EditText count = (EditText) rootView.findViewById(R.id.minuteCount);
-                Log.v(TAG, "Recorded: " + count.getText());
-                Toast.makeText(getActivity(), "Recorded: " + count.getText(), Toast.LENGTH_SHORT).show();
+                Log.v(TAG, "Recorded: " + count.getText() + " min of " + desc.getText());
+                Toast.makeText(getActivity(),
+                        "Recorded: " + count.getText() + " min of " + desc.getText(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

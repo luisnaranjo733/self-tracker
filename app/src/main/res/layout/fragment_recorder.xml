@@ -1,14 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context="selftracker.jnaranj0.uw.edu.selftracker.RecorderFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/minuteCount"
+        android:text="What did you do?"
+        />
+
+    <EditText
+        android:id="@+id/activityDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="How many minutes did you work out for?"
         />
 
@@ -19,4 +31,4 @@
         android:numeric="integer"
         />
 
-</RelativeLayout>
+</LinearLayout>
