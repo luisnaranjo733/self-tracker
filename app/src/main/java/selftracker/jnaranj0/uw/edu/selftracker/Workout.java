@@ -5,12 +5,14 @@ package selftracker.jnaranj0.uw.edu.selftracker;
  */
 public class Workout {
     private String title;
+    private int length;
 
-    public Workout(String title) {
+    public Workout(String title, int length) {
         this.title = title;
+        this.length = length;
     }
 
     public String toString() {
-        return this.title;
+        return this.title + this.length;
     }
 }

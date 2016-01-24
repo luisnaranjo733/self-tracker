@@ -60,7 +60,7 @@ public class MasterFragment extends Fragment {
 
         ArrayList<Workout> list = new ArrayList<Workout>();
         for (int i=0; i < 10; i++) {
-            Workout workout = new Workout("" + i + " bottles of beer on the wall");
+            Workout workout = new Workout("" + i + " bottles of beer on the wall", i + 60);
             list.add(workout);
         }
 

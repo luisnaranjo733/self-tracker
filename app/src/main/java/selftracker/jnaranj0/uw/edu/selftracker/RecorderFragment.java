@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -46,6 +47,7 @@ public class RecorderFragment extends DialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 EditText count = (EditText) rootView.findViewById(R.id.minuteCount);
                 Log.v(TAG, "Recorded: " + count.getText());
+                Toast.makeText(getActivity(), "Recorded: " + count.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
