@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
@@ -75,12 +76,17 @@ public class MasterFragment extends Fragment {
         activity.workoutsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot rootSnapshot) {
+                list.clear();
                 for (DataSnapshot childSnapshot : rootSnapshot.getChildren()) {
                     Workout workout = childSnapshot.getValue(Workout.class);
                     list.add(workout);
                     adapter.notifyDataSetChanged();
-                    Log.v(TAG, workout.toString());
-                }
+                    // don't do this on init, only on click
+                    if (false) {
+                        ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(workout);
+                    }
+                    }
+
             }
 
             @Override
@@ -98,6 +104,40 @@ public class MasterFragment extends Fragment {
 
                 // swap the fragments
                 ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(item);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final Workout item = (Workout) parent.getItemAtPosition(position);
+//                list.remove(item);
+//                adapter.notifyDataSetChanged();
+//                Log.v(TAG, "Removed from view: " + item);
+
+                activity.workoutsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot rootSnapshot) {
+                        for (DataSnapshot childSnapshot : rootSnapshot.getChildren()) {
+                            Workout workout = childSnapshot.getValue(Workout.class);
+                            if (workout.equals(item)) {
+                                Firebase ref = childSnapshot.getRef();
+                                ref.removeValue();
+                                Log.v(TAG, "Removed from firebase: " + workout);
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+
+
+                Toast.makeText(getActivity(), "Deleting: " + item.toString(), Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
 

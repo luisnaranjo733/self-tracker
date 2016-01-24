@@ -25,4 +25,13 @@ public class Workout {
     public int getDuration() {
         return this.duration;
     }
+
+    public boolean equals(Workout other) {
+        if (other.getDescription().equals(this.getDescription())
+                && other.getDuration() == this.getDuration()) {
+            return true;
+        }
+        return false;
+    }
+
 }
