@@ -76,16 +76,19 @@ public class MasterFragment extends Fragment {
         activity.workoutsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot rootSnapshot) {
+                // needed to avoid duplicate entries
                 list.clear();
+
                 for (DataSnapshot childSnapshot : rootSnapshot.getChildren()) {
                     Workout workout = childSnapshot.getValue(Workout.class);
                     list.add(workout);
                     adapter.notifyDataSetChanged();
-                    // don't do this on init, only on click
+                    // TODO:
+                    // don't do this on init, only on new Workout from RecorderFragment
                     if (false) {
                         ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(workout);
                     }
-                    }
+                }
 
             }
 
@@ -111,9 +114,6 @@ public class MasterFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 final Workout item = (Workout) parent.getItemAtPosition(position);
-//                list.remove(item);
-//                adapter.notifyDataSetChanged();
-//                Log.v(TAG, "Removed from view: " + item);
 
                 activity.workoutsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -150,7 +150,6 @@ public class MasterFragment extends Fragment {
                 RecorderFragment recorderFrag = RecorderFragment.newInstance();
 
                 ((onWorkoutSelectedListener) getActivity()).onShowDialog(recorderFrag);
-                //recorderFrag.show(getFragmentManager(),  "dialog");
 
             }
         });
