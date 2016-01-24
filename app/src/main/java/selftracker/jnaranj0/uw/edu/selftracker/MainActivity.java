@@ -1,5 +1,6 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
 
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -62,13 +63,21 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
 
             ft.replace(R.id.rightPane, detailFrag, DETAIL_FRAG_TAG);
             ft.addToBackStack("Switching frags");
-            ft.setTransition( FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         } else if (detailFrag.isVisible()) {
             Toast.makeText(getApplicationContext(), "HEY", Toast.LENGTH_SHORT).show();
             detailFrag.update(workout);
         }
 
+    }
+
+    @Override
+    public void onShowDialog(RecorderFragment fragment) {
+        Log.v(TAG, "Callback active");
+        FragmentManager manager = getFragmentManager();
+
+        fragment.show(manager, "dialog");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
 
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class MasterFragment extends Fragment {
 
     public interface onWorkoutSelectedListener {
         public void onWorkoutSelected(Workout workout);
+        public void onShowDialog(RecorderFragment frag);
     }
 
 
@@ -86,6 +88,11 @@ public class MasterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.v(TAG, "Button pressed!");
+                RecorderFragment recorderFrag = RecorderFragment.newInstance();
+
+                ((onWorkoutSelectedListener) getActivity()).onShowDialog(recorderFrag);
+                //recorderFrag.show(getFragmentManager(),  "dialog");
+
             }
         });
 
