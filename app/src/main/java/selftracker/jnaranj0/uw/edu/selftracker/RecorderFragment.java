@@ -3,13 +3,16 @@ package selftracker.jnaranj0.uw.edu.selftracker;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 /**
@@ -19,6 +22,8 @@ import android.view.ViewGroup;
  * to handle interaction events.
  */
 public class RecorderFragment extends DialogFragment {
+
+    public static final String TAG = "SelfTracker.RecorderFrag";
 
     public static RecorderFragment newInstance() {
         return new RecorderFragment();
@@ -33,7 +38,14 @@ public class RecorderFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        builder.setMessage("How long did you work out for?");
         builder.setView(inflater.inflate(R.layout.fragment_recorder, null));
+        builder.setPositiveButton("Record", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.v(TAG, "FIRE ZE MISSILES");
+            }
+        });
 
         // Create the AlertDialog object and return it
         return builder.create();
