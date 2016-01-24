@@ -20,6 +20,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -180,11 +182,14 @@ public class MasterFragment extends Fragment {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
             }
             // Lookup view for data population
-            TextView duration = (TextView) convertView.findViewById(R.id.workoutDuration);
-            TextView description = (TextView) convertView.findViewById(R.id.workoutDescription);
+            TextView durationView = (TextView) convertView.findViewById(R.id.workoutDuration);
+            TextView descriptionView = (TextView) convertView.findViewById(R.id.workoutDescription);
+            TextView timestampView = (TextView) convertView.findViewById(R.id.workoutTimestamp);
+
             // Populate the data into the template view using the data object
-            duration.setText("" + workout.getDuration());
-            description.setText(workout.getDescription());
+            durationView.setText("" + workout.getDuration() + " min");
+            descriptionView.setText(workout.getDescription());
+            timestampView.setText(workout.getTimestamp());
             // Return the completed view to render on screen
             return convertView;
         }

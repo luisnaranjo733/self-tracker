@@ -62,6 +62,8 @@ public class RecorderFragment extends DialogFragment {
                 Map<String, String> workout = new HashMap<String, String>();
                 workout.put("description", descriptionText.getText().toString());
                 workout.put("duration", durationText.getText().toString());
+                Long tsLong = System.currentTimeMillis()/1000;
+                workout.put("timestamp", tsLong.toString());
                 activity.workoutsRef.push().setValue(workout);
 
 
