@@ -4,23 +4,23 @@ package selftracker.jnaranj0.uw.edu.selftracker;
  * Created by luis on 1/23/16.
  */
 public class Workout {
-    private String title;
-    private int length;
+    private String description;
+    private int duration;
 
-    public Workout(String title, int length) {
-        this.title = title;
-        this.length = length;
+    public Workout(String description, int duration) {
+        this.description = description;
+        this.duration = duration;
     }
 
     public String toString() {
-        return "" + this.length + " min";
+        return "" + this.duration + " min";
     }
 
     public String getDescription() {
-        return this.title;
+        return this.description;
     }
 
     public int getDuration() {
-        return this.length;
+        return this.duration;
     }
 }

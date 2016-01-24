@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,15 +46,24 @@ public class RecorderFragment extends DialogFragment {
         builder.setMessage("Record your workout");
         final View rootView = inflater.inflate(R.layout.fragment_recorder, null);
         builder.setView(rootView);
+        final MainActivity activity = (MainActivity) getActivity();
         builder.setPositiveButton("Record", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText desc = (EditText) rootView.findViewById(R.id.activityDesc);
-                EditText count = (EditText) rootView.findViewById(R.id.minuteCount);
-                Log.v(TAG, "Recorded: " + count.getText() + " min of " + desc.getText());
+                EditText descriptionText = (EditText) rootView.findViewById(R.id.activityDesc);
+                EditText durationText = (EditText) rootView.findViewById(R.id.minuteCount);
+                Log.v(TAG, "Recorded: " + durationText.getText() + " min of " + descriptionText.getText());
                 Toast.makeText(getActivity(),
-                        "Recorded: " + count.getText() + " min of " + desc.getText(),
+                        "Recorded: " + durationText.getText() + " min of " + descriptionText.getText(),
                         Toast.LENGTH_SHORT).show();
+
+                Firebase workoutsRef = activity.ref.child(activity.FIREBASE_WORKOUTS_ARRAY);
+                Map<String, String> workout = new HashMap<String, String>();
+                workout.put("description", descriptionText.getText().toString());
+                workout.put("duration", durationText.getText().toString());
+                workoutsRef.push().setValue(workout);
+
+
             }
         });
 

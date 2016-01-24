@@ -12,11 +12,17 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+
 public class MainActivity extends AppCompatActivity implements  MasterFragment.onWorkoutSelectedListener {
     public static final String TAG = "SelfTracker";
     public static final String MASTER_FRAG_TAG = "MasterFrag";
     public static final String SUMMARY_FRAG_TAG =  "SummaryFrag";
     public static final String DETAIL_FRAG_TAG = "DetailFrag";
+
+    public static final String FIREBASE_ROOT = "https://workout-self-tracker.firebaseio.com/";
+    public static final String FIREBASE_WORKOUTS_ARRAY = "workouts";
+    public Firebase ref;
 
     public FrameLayout leftPane;
     public FrameLayout rightPane;
@@ -25,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
+        ref = new Firebase(FIREBASE_ROOT);
         setContentView(R.layout.activity_main);
 
         leftPane = (FrameLayout) findViewById(R.id.leftPane);
