@@ -16,7 +16,7 @@ public class Workout {
         return "" + this.length + " min";
     }
 
-    public String getTitle() {
+    public String getDescription() {
         return this.title;
     }
 
