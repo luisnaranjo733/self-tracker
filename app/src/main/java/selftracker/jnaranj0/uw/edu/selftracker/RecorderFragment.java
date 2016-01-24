@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,6 +53,8 @@ public class RecorderFragment extends DialogFragment {
                 Toast.makeText(getActivity(),
                         "Recorded: " + count.getText() + " min of " + desc.getText(),
                         Toast.LENGTH_SHORT).show();
+                // https://docs.oracle.com/javase/6/docs/api/java/util/Date.html
+                Date date = Date();
             }
         });
 
