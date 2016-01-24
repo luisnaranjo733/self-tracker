@@ -13,6 +13,14 @@ public class Workout {
     }
 
     public String toString() {
-        return this.title + this.length;
+        return "" + this.length + " min";
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public int getDuration() {
+        return this.length;
     }
 }

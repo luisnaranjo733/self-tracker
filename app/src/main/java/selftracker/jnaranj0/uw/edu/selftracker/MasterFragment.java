@@ -65,7 +65,7 @@ public class MasterFragment extends Fragment {
         }
 
         adapter = new ArrayAdapter<Workout>(
-                getActivity(), R.layout.list_item, R.id.txtItem, list);
+                getActivity(), R.layout.list_item, R.id.workoutDuration, list);
 
         AdapterView listView = (AdapterView) rootView.findViewById(R.id.listView);
         listView.setAdapter(adapter);
