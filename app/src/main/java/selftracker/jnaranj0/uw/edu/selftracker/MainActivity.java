@@ -48,15 +48,25 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
         DetailFragment detailFrag = (DetailFragment) getFragmentManager()
                 .findFragmentByTag(DETAIL_FRAG_TAG);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("title", workout.toString());
+
+
         if  (detailFrag == null) {
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.replace(R.id.leftPane, new MasterFragment(), MASTER_FRAG_TAG);
-            ft.replace(R.id.rightPane, new DetailFragment(), DETAIL_FRAG_TAG);
+
+            detailFrag = new DetailFragment();
+            detailFrag.setArguments(bundle);
+
+            ft.replace(R.id.rightPane, detailFrag, DETAIL_FRAG_TAG);
             ft.addToBackStack("Switching frags");
             ft.setTransition( FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-
             ft.commit();
+        } else if (detailFrag.isVisible()) {
+            Toast.makeText(getApplicationContext(), "HEY", Toast.LENGTH_SHORT).show();
+            detailFrag.update(workout);
         }
 
     }
