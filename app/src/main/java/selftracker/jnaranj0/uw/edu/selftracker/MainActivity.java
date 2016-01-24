@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
     public static final String FIREBASE_ROOT = "https://workout-self-tracker.firebaseio.com/";
     public static final String FIREBASE_WORKOUTS_ARRAY = "workouts";
     public Firebase ref;
+    public Firebase workoutsRef;
 
     public FrameLayout leftPane;
     public FrameLayout rightPane;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         ref = new Firebase(FIREBASE_ROOT);
+        workoutsRef = ref.child(FIREBASE_WORKOUTS_ARRAY);
         setContentView(R.layout.activity_main);
 
         leftPane = (FrameLayout) findViewById(R.id.leftPane);

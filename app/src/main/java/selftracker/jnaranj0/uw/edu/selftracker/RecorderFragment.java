@@ -57,11 +57,10 @@ public class RecorderFragment extends DialogFragment {
                         "Recorded: " + durationText.getText() + " min of " + descriptionText.getText(),
                         Toast.LENGTH_SHORT).show();
 
-                Firebase workoutsRef = activity.ref.child(activity.FIREBASE_WORKOUTS_ARRAY);
                 Map<String, String> workout = new HashMap<String, String>();
                 workout.put("description", descriptionText.getText().toString());
                 workout.put("duration", durationText.getText().toString());
-                workoutsRef.push().setValue(workout);
+                activity.workoutsRef.push().setValue(workout);
 
 
             }
