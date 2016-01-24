@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.content.Context;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -77,6 +79,16 @@ public class MasterFragment extends Fragment {
                 ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(item);
             }
         });
+
+        Button button = (Button) rootView.findViewById(R.id.addWorkoutButton);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Log.v(TAG, "Button pressed!");
+            }
+        });
+
 
         // Inflate the layout for this fragment
         return rootView;

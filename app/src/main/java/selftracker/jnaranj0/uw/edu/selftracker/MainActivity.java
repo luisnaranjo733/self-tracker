@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(R.id.leftPane, new SummaryFragment(), SUMMARY_FRAG_TAG);
             ft.add(R.id.rightPane, new MasterFragment(), MASTER_FRAG_TAG);
-            //ft.addToBackStack("initializing frags");
             ft.commit();
-            Toast.makeText(getApplicationContext(), "initializing frags", Toast.LENGTH_SHORT).show();
 
         } else {
             Log.v(TAG, "Portrait mode");
