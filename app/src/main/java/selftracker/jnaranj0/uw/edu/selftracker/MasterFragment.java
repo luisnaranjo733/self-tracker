@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.util.ArrayList;
 
 
@@ -27,6 +31,7 @@ public class MasterFragment extends Fragment {
     private ArrayAdapter<Workout> adapter;
 
     private onWorkoutSelectedListener callback;
+    private MainActivity activity;
 
     public interface onWorkoutSelectedListener {
         public void onWorkoutSelected(Workout workout);
@@ -59,27 +64,30 @@ public class MasterFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_master, container, false);
 
-        ArrayList<Workout> list = new ArrayList<Workout>();
-        list.add(new Workout("Did some curls", 30));
-        list.add(new Workout("ran springs", 45));
-        list.add(new Workout("Did some pullups", 32));
-        list.add(new Workout("Did some crunches", 20));
-        list.add(new Workout("Did some pushups", 21));
-        list.add(new Workout("Did some situps", 37));
-        list.add(new Workout("Did some deadlifts", 42));
-        list.add(new Workout("Did some army crawls", 80));
-        list.add(new Workout("Did some jumping jacks", 120));
+        activity = (MainActivity) getActivity();
 
-
-
-
-//        adapter = new ArrayAdapter<Workout>(
-//                getActivity(), R.layout.list_item, R.id.workoutDuration, list);
-
+        final ArrayList<Workout> list = new ArrayList<Workout>();
         adapter = new WorkoutAdapter(getActivity(), R.layout.list_item, list);
 
         AdapterView listView = (AdapterView) rootView.findViewById(R.id.listView);
         listView.setAdapter(adapter);
+
+        activity.workoutsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot rootSnapshot) {
+                for (DataSnapshot childSnapshot : rootSnapshot.getChildren()) {
+                    Workout workout = childSnapshot.getValue(Workout.class);
+                    list.add(workout);
+                    adapter.notifyDataSetChanged();
+                    Log.v(TAG, workout.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         //respond to item clicking
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

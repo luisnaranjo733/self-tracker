@@ -30,6 +30,7 @@ public class RecorderFragment extends DialogFragment {
 
     public static final String TAG = "SelfTracker.Recorder";
 
+    private MainActivity activity;
     public static RecorderFragment newInstance() {
         return new RecorderFragment();
     }
@@ -46,7 +47,8 @@ public class RecorderFragment extends DialogFragment {
         builder.setMessage("Record your workout");
         final View rootView = inflater.inflate(R.layout.fragment_recorder, null);
         builder.setView(rootView);
-        final MainActivity activity = (MainActivity) getActivity();
+        activity = (MainActivity) getActivity();
+
         builder.setPositiveButton("Record", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

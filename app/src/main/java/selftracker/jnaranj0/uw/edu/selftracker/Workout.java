@@ -7,13 +7,15 @@ public class Workout {
     private String description;
     private int duration;
 
+    public Workout() {}
+
     public Workout(String description, int duration) {
         this.description = description;
         this.duration = duration;
     }
 
     public String toString() {
-        return "" + this.duration + " min";
+        return "" + getDuration() + " min of " +  getDescription();
     }
 
     public String getDescription() {
