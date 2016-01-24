@@ -8,12 +8,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/hourCount"
-        android:text="How long did you work out for?"
+        android:layout_above="@+id/minuteCount"
+        android:text="How many minutes did you work out for?"
         />
 
     <EditText
-        android:id="@+id/hourCount"
+        android:id="@+id/minuteCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numeric="integer"

@@ -23,7 +23,7 @@ import android.widget.EditText;
  */
 public class RecorderFragment extends DialogFragment {
 
-    public static final String TAG = "SelfTracker.RecorderFrag";
+    public static final String TAG = "SelfTracker.Recorder";
 
     public static RecorderFragment newInstance() {
         return new RecorderFragment();
@@ -39,11 +39,13 @@ public class RecorderFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setMessage("How long did you work out for?");
-        builder.setView(inflater.inflate(R.layout.fragment_recorder, null));
+        final View rootView = inflater.inflate(R.layout.fragment_recorder, null);
+        builder.setView(rootView);
         builder.setPositiveButton("Record", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Log.v(TAG, "FIRE ZE MISSILES");
+                EditText count = (EditText) rootView.findViewById(R.id.minuteCount);
+                Log.v(TAG, "Recorded: " + count.getText());
             }
         });
 

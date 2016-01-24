@@ -1,11 +1,14 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
 
+import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         } else if (detailFrag.isVisible()) {
-            Toast.makeText(getApplicationContext(), "HEY", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "HEY", Toast.LENGTH_SHORT).show();
             detailFrag.update(workout);
         }
 
