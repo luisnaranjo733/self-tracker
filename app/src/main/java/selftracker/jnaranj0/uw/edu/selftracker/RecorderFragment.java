@@ -31,11 +31,9 @@ public class RecorderFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // what did you do
-        // for how many minutes did you do it?
-        builder.setMessage("What did you do?");
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.fragment_recorder, null));
 
         // Create the AlertDialog object and return it
         return builder.create();
