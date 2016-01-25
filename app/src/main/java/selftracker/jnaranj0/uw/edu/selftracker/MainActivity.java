@@ -1,4 +1,5 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
+// TODO: fix package name
 
 import android.app.ActionBar;
 import android.app.DialogFragment;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
         if  (detailFrag == null) {
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
+            // TODO: should not create a new "list" fragment when you do this;
+            // just move the existing one around.
             ft.replace(R.id.leftPane, new MasterFragment(), MASTER_FRAG_TAG);
 
             detailFrag = new DetailFragment();
@@ -89,8 +92,9 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
     public void onShowDialog(RecorderFragment fragment) {
         Log.v(TAG, "Callback active");
         FragmentManager manager = getFragmentManager();
-
         fragment.show(manager, "dialog");
+        // TODO: After adding the event, the user should be shown the "list + detail" layout
+        // TODO:  Again, using up navigation from here should return to the "list and summary" layout.
     }
 
     @Override

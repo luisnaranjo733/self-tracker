@@ -37,7 +37,7 @@ public class Workout {
 
     public String getTimestamp() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("ka MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("ha MM/dd");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT-8"));
         Date netDate = new Date(timestamp);
         return sdf.format(netDate);

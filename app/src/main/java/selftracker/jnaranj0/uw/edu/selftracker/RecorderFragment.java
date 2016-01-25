@@ -55,18 +55,17 @@ public class RecorderFragment extends DialogFragment {
                 EditText descriptionText = (EditText) rootView.findViewById(R.id.activityDesc);
                 EditText durationText = (EditText) rootView.findViewById(R.id.minuteCount);
                 Log.v(TAG, "Recorded: " + durationText.getText() + " min of " + descriptionText.getText());
-                Toast.makeText(getActivity(),
-                        "Recorded: " + durationText.getText() + " min of " + descriptionText.getText(),
-                        Toast.LENGTH_SHORT).show();
+
 
                 Map<String, String> workout = new HashMap<String, String>();
                 workout.put("description", descriptionText.getText().toString());
                 workout.put("duration", durationText.getText().toString());
-                Long tsLong = System.currentTimeMillis()/1000;
+                Long tsLong = System.currentTimeMillis();
                 workout.put("timestamp", tsLong.toString());
                 activity.workoutsRef.push().setValue(workout);
-
-
+                Toast.makeText(getActivity(),
+                        "Recorded: " + durationText.getText() + " min of " + descriptionText.getText(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -51,7 +51,7 @@ public class SummaryFragment extends Fragment {
                 TextView avgWorkoutDurationView = (TextView)
                         rootView.findViewById(R.id.averageWorkoutDurationView);
 
-                avgWorkoutDurationView.setText("" + avgWorkoutDuration);
+                avgWorkoutDurationView.setText("Average workout duration " + avgWorkoutDuration);
 
             }
 
