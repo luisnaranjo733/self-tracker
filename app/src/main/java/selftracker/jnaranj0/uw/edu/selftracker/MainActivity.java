@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
     public FrameLayout leftPane;
     public FrameLayout rightPane;
 
+    public MasterFragment masterFragment;
+
     public boolean eventJustRecorded;
 
 
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(R.id.leftPane, new SummaryFragment(), SUMMARY_FRAG_TAG);
-            ft.add(R.id.rightPane, new MasterFragment(), MASTER_FRAG_TAG);
+            masterFragment = new MasterFragment();
+            ft.add(R.id.rightPane, masterFragment, MASTER_FRAG_TAG);
             ft.commit();
 
         } else {
@@ -69,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
         bundle.putString("title", workout.toString());
 
 
+        // if current view is (summary/master)
+        // switch to (master/detail)
         if  (detailFrag == null) {
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
@@ -84,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         } else if (detailFrag.isVisible()) {
-            //Toast.makeText(getApplicationContext(), "HEY", Toast.LENGTH_SHORT).show();
+            // if current view is (master/detail),
+            // update the detail view with the newly selected event
             detailFrag.update(workout);
         }
 
@@ -95,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
         Log.v(TAG, "Callback active");
         FragmentManager manager = getFragmentManager();
         fragment.show(manager, "dialog");
-        // TODO: After adding the event, the user should be shown the "list + detail" layout
-        // TODO:  Again, using up navigation from here should return to the "list and summary" layout.
     }
 
     @Override

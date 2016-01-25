@@ -85,8 +85,9 @@ public class MasterFragment extends Fragment {
                     Workout workout = childSnapshot.getValue(Workout.class);
                     list.add(workout);
                     adapter.notifyDataSetChanged();
-                    // TODO:
-                    // don't do this on init, only on new Workout from RecorderFragment
+                    // show the newly created event
+                    // but don't switch views every time the db changes
+                    // could change due to deletion from long press
                     if (activity.eventJustRecorded()) {
                         ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(workout);
                         activity.eventJustRecorded = false;
@@ -105,7 +106,7 @@ public class MasterFragment extends Fragment {
             }
         });
 
-        //respond to item clicking
+        //respond to item clicking to show detail view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -117,6 +118,7 @@ public class MasterFragment extends Fragment {
             }
         });
 
+        // respond to long press to delete event
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
