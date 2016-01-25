@@ -1,14 +1,40 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="edu.uw.jnaranj0.selftracker.DetailFragment">
 
-    <!-- TODO: Make this nicer layout -->
     <TextView
-        android:id="@+id/workoutTitle"
+        android:id="@+id/displayWorkoutTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="50dp"
 
-</FrameLayout>
+        android:textSize="30dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/displayWorkoutTimestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/displayWorkoutDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="50dp"
+        />
+
+
+
+</LinearLayout>

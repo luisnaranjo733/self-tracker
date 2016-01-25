@@ -34,12 +34,16 @@ public class Workout {
         return this.duration;
     }
 
-    public String getTimestamp() {
+    public String getTimestamp(String formatString) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("ha MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(formatString);
         sdf.setTimeZone(TimeZone.getTimeZone("GMT-8"));
         Date netDate = new Date(timestamp);
         return sdf.format(netDate);
+    }
+
+    public String getTimestamp() {
+        return getTimestamp("h a MM/dd");
     }
 
 

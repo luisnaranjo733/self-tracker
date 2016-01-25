@@ -17,6 +17,10 @@ public class DetailFragment extends Fragment {
 
     public static final String TAG = "SelfTracker.DetailFrag";
 
+    private TextView title;
+    private TextView timestamp;
+    private TextView duration;
+
     public DetailFragment() {
         // Required empty public constructor
     }
@@ -30,15 +34,25 @@ public class DetailFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
-        TextView title = (TextView) rootView.findViewById(R.id.workoutTitle);
-        title.setText(bundle.getString("title"));
+        title = (TextView) rootView.findViewById(R.id.displayWorkoutTitle);
+        timestamp = (TextView) rootView.findViewById(R.id.displayWorkoutTimestamp);
+        duration = (TextView) rootView.findViewById(R.id.displayWorkoutDuration);
+
+        String description = bundle.getString("description");
+        int duration =  Integer.parseInt(bundle.getString("duration"));
+        long timestamp = bundle.getLong("timestamp");
+        Workout workout = new Workout(description, duration);
+        workout.setTimestamp(timestamp);
+
+        update(workout);
 
         return rootView;
     }
 
     public void update(Workout workout) {
-        TextView title = (TextView) getActivity().findViewById(R.id.workoutTitle);
-        title.setText(workout.toString());
+        title.setText(workout.getDescription());
+        timestamp.setText(workout.getTimestamp("h a MM/dd/y"));
+        duration.setText("" + workout.getDuration() + " min");
         Log.v(TAG, workout.toString());
     }
 

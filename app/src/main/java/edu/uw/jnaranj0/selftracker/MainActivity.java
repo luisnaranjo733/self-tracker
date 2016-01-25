@@ -1,5 +1,4 @@
 package edu.uw.jnaranj0.selftracker;
-// TODO: fix package name
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -64,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
                 .findFragmentByTag(DETAIL_FRAG_TAG);
 
         Bundle bundle = new Bundle();
-        bundle.putString("title", workout.toString());
+        bundle.putString("description", workout.getDescription());
+        bundle.putLong("timestamp", workout.timestamp);
+        bundle.putString("duration", "" + workout.getDuration());
 
 
         // if current view is (summary/master)
@@ -72,8 +73,6 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
         if  (detailFrag == null) {
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
-            // TODO: should not create a new "list" fragment when you do this;
-            // just move the existing one around.
             ft.replace(R.id.leftPane, new MasterFragment(), MASTER_FRAG_TAG);
 
             detailFrag = new DetailFragment();
