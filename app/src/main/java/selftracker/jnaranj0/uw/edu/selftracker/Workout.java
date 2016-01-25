@@ -1,16 +1,13 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
 
 
+import android.text.format.DateFormat;
 import android.util.Log;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-/**
- * Created by luis on 1/23/16.
- */
 public class Workout {
     private String description;
     private int duration;
@@ -39,9 +36,10 @@ public class Workout {
     }
 
     public String getTimestamp() {
-        DateFormat sdf = new SimpleDateFormat("ka MM/dd");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT-08:00"));
-        Date netDate = (new Date(timestamp));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("ka MM/dd");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT-8"));
+        Date netDate = new Date(timestamp);
         return sdf.format(netDate);
     }
 
