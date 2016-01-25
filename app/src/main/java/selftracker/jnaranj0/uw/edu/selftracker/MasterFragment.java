@@ -117,18 +117,30 @@ public class MasterFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 final Workout item = (Workout) parent.getItemAtPosition(position);
 
+                Log.v(TAG, "Attempting to delete: " + item);
+                // ask the user if they really want to delete
+
                 activity.workoutsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot rootSnapshot) {
                         for (DataSnapshot childSnapshot : rootSnapshot.getChildren()) {
                             Workout workout = childSnapshot.getValue(Workout.class);
+                            //Log.v(TAG, "Examining: " + workout + " equals? " + workout.equals(item));
                             if (workout.equals(item)) {
                                 Firebase ref = childSnapshot.getRef();
                                 ref.removeValue();
                                 Log.v(TAG, "Removed from firebase: " + workout);
-                            }
 
+                                list.remove(item);
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(getActivity(),
+                                        "Deleted: " + item,
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
+
+
+
                     }
 
                     @Override
@@ -138,7 +150,6 @@ public class MasterFragment extends Fragment {
                 });
 
 
-                Toast.makeText(getActivity(), "Deleting: " + item.toString(), Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

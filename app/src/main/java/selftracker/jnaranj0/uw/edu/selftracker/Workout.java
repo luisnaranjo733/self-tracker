@@ -1,9 +1,12 @@
 package selftracker.jnaranj0.uw.edu.selftracker;
 
 
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by luis on 1/23/16.
@@ -11,7 +14,9 @@ import java.util.Date;
 public class Workout {
     private String description;
     private int duration;
-    private long timestamp;
+    public long timestamp;
+
+    public static final String TAG = "SelfTracker.Workout";
 
     public Workout() {}
 
@@ -35,20 +40,27 @@ public class Workout {
 
     public String getTimestamp() {
         DateFormat sdf = new SimpleDateFormat("ka MM/dd");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT-08:00"));
         Date netDate = (new Date(timestamp));
         return sdf.format(netDate);
     }
+
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
     public boolean equals(Workout other) {
-        if (other.getDescription().equals(this.getDescription())
-                && other.getDuration() == this.getDuration()) {
+        boolean titleEqual = other.getDescription().equals(this.getDescription());
+        boolean timestampEqual = other.timestamp == this.timestamp;
+
+        Log.v(TAG, "title: " + titleEqual + " time:  " + timestampEqual);
+
+        if (titleEqual && timestampEqual) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
 }
