@@ -88,9 +88,6 @@ public class MasterFragment extends Fragment {
                     if (activity.eventJustRecorded()) {
                         ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(workout);
                         activity.eventJustRecorded = false;
-                        Toast.makeText(getActivity(),
-                                "Just recorded event",
-                                Toast.LENGTH_SHORT).show();
 
                     }
                 }
