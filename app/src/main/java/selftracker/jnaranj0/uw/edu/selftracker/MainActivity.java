@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
-public class MainActivity extends AppCompatActivity implements  MasterFragment.onWorkoutSelectedListener {
+public class MainActivity extends AppCompatActivity implements MasterFragment.onWorkoutSelectedListener, RecorderFragment.onEventRecordedListener{
     public static final String TAG = "SelfTracker";
     public static final String MASTER_FRAG_TAG = "MasterFrag";
     public static final String SUMMARY_FRAG_TAG =  "SummaryFrag";
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
 
     public FrameLayout leftPane;
     public FrameLayout rightPane;
+
+    public boolean eventJustRecorded;
 
 
     @Override
@@ -104,5 +106,10 @@ public class MainActivity extends AppCompatActivity implements  MasterFragment.o
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean eventJustRecorded() {
+        return eventJustRecorded;
     }
 }

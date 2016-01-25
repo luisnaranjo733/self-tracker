@@ -31,12 +31,31 @@ public class RecorderFragment extends DialogFragment {
     public static final String TAG = "SelfTracker.Recorder";
 
     private MainActivity activity;
+
+    onEventRecordedListener callback;
+    public interface onEventRecordedListener {
+        public boolean eventJustRecorded();
+    }
+
     public static RecorderFragment newInstance() {
         return new RecorderFragment();
     }
 
     public RecorderFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            callback = (onEventRecordedListener) context;
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+            throw new ClassCastException(context.toString() +
+                    " must implement onEventJustRecordedListener");
+        }
     }
 
 
@@ -66,6 +85,7 @@ public class RecorderFragment extends DialogFragment {
                 Toast.makeText(getActivity(),
                         "Recorded: " + durationText.getText() + " min of " + descriptionText.getText(),
                         Toast.LENGTH_SHORT).show();
+                activity.eventJustRecorded = true;
             }
         });
 

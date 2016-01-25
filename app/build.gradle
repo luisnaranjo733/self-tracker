@@ -8,7 +8,6 @@ android {
         applicationId "selftracker.jnaranj0.uw.edu.selftracker"
         minSdkVersion 15
         targetSdkVersion 21
-        // TODO: Update target SDK
         versionCode 1
         versionName "1.0"
     }

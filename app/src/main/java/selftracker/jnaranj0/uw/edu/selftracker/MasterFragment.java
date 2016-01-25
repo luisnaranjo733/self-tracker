@@ -87,8 +87,13 @@ public class MasterFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     // TODO:
                     // don't do this on init, only on new Workout from RecorderFragment
-                    if (false) {
+                    if (activity.eventJustRecorded()) {
                         ((onWorkoutSelectedListener) getActivity()).onWorkoutSelected(workout);
+                        activity.eventJustRecorded = false;
+                        Toast.makeText(getActivity(),
+                                "Just recorded event",
+                                Toast.LENGTH_SHORT).show();
+
                     }
                 }
 
