@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "selftracker.jnaranj0.uw.edu.selftracker"
+        applicationId "edu.uw.jnaranj0.selftracker"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1

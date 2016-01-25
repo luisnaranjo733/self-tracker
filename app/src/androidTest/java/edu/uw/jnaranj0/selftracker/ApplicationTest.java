@@ -1,4 +1,4 @@
-package selftracker.jnaranj0.uw.edu.selftracker;
+package edu.uw.jnaranj0.selftracker;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

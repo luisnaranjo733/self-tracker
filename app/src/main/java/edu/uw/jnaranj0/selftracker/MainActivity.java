@@ -1,17 +1,12 @@
-package selftracker.jnaranj0.uw.edu.selftracker;
+package edu.uw.jnaranj0.selftracker;
 // TODO: fix package name
 
-import android.app.ActionBar;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
@@ -50,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements MasterFragment.on
             FragmentManager manager = getFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(R.id.leftPane, new SummaryFragment(), SUMMARY_FRAG_TAG);
-            masterFragment = new MasterFragment();
-            ft.add(R.id.rightPane, masterFragment, MASTER_FRAG_TAG);
+            //masterFragment = new MasterFragment();
+            ft.add(R.id.rightPane, new MasterFragment(), MASTER_FRAG_TAG);
             ft.commit();
 
         } else {

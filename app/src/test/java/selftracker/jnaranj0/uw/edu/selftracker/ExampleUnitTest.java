@@ -1,4 +1,4 @@
-package selftracker.jnaranj0.uw.edu.selftracker;
+package edu.uw.jnaranj0.selftracker;
 
 import org.junit.Test;
 

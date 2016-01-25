@@ -1,8 +1,8 @@
-package selftracker.jnaranj0.uw.edu.selftracker;
+package edu.uw.jnaranj0.selftracker;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

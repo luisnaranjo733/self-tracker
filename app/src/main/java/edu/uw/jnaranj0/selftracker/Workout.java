@@ -1,7 +1,6 @@
-package selftracker.jnaranj0.uw.edu.selftracker;
+package edu.uw.jnaranj0.selftracker;
 
 
-import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;

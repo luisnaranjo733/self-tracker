@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="selftracker.jnaranj0.uw.edu.selftracker.RecorderFragment">
+    tools:context="edu.uw.jnaranj0.selftracker.RecorderFragment">
 
     <TextView
         android:layout_width="match_parent"

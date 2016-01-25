@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="selftracker.jnaranj0.uw.edu.selftracker.MasterFragment">
+    tools:context="edu.uw.jnaranj0.selftracker.MasterFragment">
 
     <ListView
         android:id="@+id/listView"
